@@ -24,7 +24,7 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 
 group :development do 
-  gem 'sqlite3'
+  gem 'pg'
   gem 'spring'
 end
 
