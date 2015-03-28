@@ -11,7 +11,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327132259) do
+ActiveRecord::Schema.define(version: 20150328190102) do
+
+  create_table "organizations", force: true do |t|
+    t.integer  "max_members"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "organizations_teams", id: false, force: true do |t|
+    t.integer "team_id"
+    t.integer "organization_id"
+  end
+
+  add_index "organizations_teams", ["organization_id"], name: "index_organizations_teams_on_organization_id"
+  add_index "organizations_teams", ["team_id", "organization_id"], name: "index_organizations_teams_on_team_id_and_organization_id"
+
+  create_table "snippet_groups", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "snippet_groups_teams", id: false, force: true do |t|
+    t.integer "team_id"
+    t.integer "snippet_group_id"
+  end
+
+  add_index "snippet_groups_teams", ["snippet_group_id"], name: "index_snippet_groups_teams_on_snippet_group_id"
+  add_index "snippet_groups_teams", ["team_id", "snippet_group_id"], name: "index_snippet_groups_teams_on_team_id_and_snippet_group_id"
+
+  create_table "snippets", force: true do |t|
+    t.string   "short_hand"
+    t.string   "expandedText"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "snippet_group_id"
+  end
+
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams_organizations", id: false, force: true do |t|
+    t.integer "team_id"
+    t.integer "organization_id"
+  end
+
+  add_index "teams_organizations", ["organization_id"], name: "index_teams_organizations_on_organization_id"
+  add_index "teams_organizations", ["team_id", "organization_id"], name: "index_teams_organizations_on_team_id_and_organization_id"
+
+  create_table "teams_users", id: false, force: true do |t|
+    t.integer "team_id"
+    t.integer "user_id"
+  end
+
+  add_index "teams_users", ["team_id", "user_id"], name: "index_teams_users_on_team_id_and_user_id"
+  add_index "teams_users", ["user_id"], name: "index_teams_users_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -26,6 +85,7 @@ ActiveRecord::Schema.define(version: 20150327132259) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
