@@ -1,0 +1,1 @@
+{"filter":false,"title":"[P] https://rails-api-skeleton-lucas-aragno-1.c9.io","undoManager":{"mark":0,"position":-1,"stack":[]},"preview":{"path":"https://rails-api-skeleton-lucas-aragno-1.c9.io/admin/sign_up","previewer":"preview.browser"},"timestamp":1427462242864,"hash":"67452301efcdab8998badcfe10325476c3d2e1f0"}

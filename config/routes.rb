@@ -7,6 +7,5 @@ Rails.application.routes.draw do
     end
     
     namespace :api do
-    	resource :team
     end
 end
